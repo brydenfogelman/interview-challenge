@@ -1,4 +1,5 @@
 var moment = require('moment');
+
 // Simple data structure for "Weather" Object:
 // {
 //     id: integer (unique),
@@ -10,8 +11,10 @@ var moment = require('moment');
 //     symbol: string,
 //     precipitation: integer,
 // }
-// This data structure is simple enough to cover the base functions of the application. If more data was generated we could use the data field to
-// select data within a 14 day range.
+// The data model was choosen to be as simple as possible to cover all the base needs to allow for quick development.
+// As a robot, you are very concerned wether your solar panels will be effective and if the chance of electrical shortage is high. 
+// To account for this precipitation and advisory were included to add extra data.
+// If more data was generated we could use the date field to select data within a 14 day range (see server.js).
 
 // IMPROVEMENTS:
 // Right now our weather data is not very smart and does not include any information about location. Assuming we were using a relational database we
