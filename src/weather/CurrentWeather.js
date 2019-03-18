@@ -4,7 +4,10 @@ import { getDayFromDate, getDisplayTemp } from '../services/helpers';
 import styled from 'styled-components';
 
 const WeatherWrapper = styled.div`
-    max-width: 500px;
+    width: 100%;
+    @media screen and (min-width: 500px) {
+        max-width: 500px;
+    }
     min-height: 300px;
     margin: auto;
     display: flex;

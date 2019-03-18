@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from '../ui';
 import ForecastItem from './ForecastItem';
-import { FORECAST_WINDOW, MAX_FORECAST_DAYS } from '../constants';
+import { MAX_FORECAST_DAYS } from '../constants';
 import styled from 'styled-components';
 
 const ForecastWrapper = styled.div`
@@ -18,6 +18,7 @@ const ForecastSlider = ({
     active,
     start,
     unit,
+    forecastWindow,
     onActiveChange,
     onStartChange,
 }) => {
@@ -42,11 +43,11 @@ const ForecastSlider = ({
                 // move start to the left
                 onClick={() => onStartChange(start - 1)}
             />
-            {items.slice(start, start + FORECAST_WINDOW)}
+            {items.slice(start, start + forecastWindow)}
             <Icon
                 icon="chevron_right"
-                // check to if FORECAST_WINDOW will be outside the range of available data
-                disabled={start + FORECAST_WINDOW >= MAX_FORECAST_DAYS && start + FORECAST_WINDOW < data.length}
+                // check to if forecastWindow will be outside the range of available data
+                disabled={start + forecastWindow >= MAX_FORECAST_DAYS}
                 // move start to the right
                 onClick={() => onStartChange(start + 1)}
             />

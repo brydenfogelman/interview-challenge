@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { fetchWeatherData } from './services/api';
-import { FORECAST_WINDOW } from './constants'; 
+import { FORECAST_WINDOW, FORECAST_WINDOW_SM, FORECAST_WINDOW_MD, FORECAST_WINDOW_LG } from './constants'; 
 import styled from 'styled-components';
 import { Emoji, Button, Loading } from './ui';
+import { withSize } from './hoc';
 import { CurrentWeather, ForecastSlider } from './weather';
 
 // Styling for the app component.
@@ -45,12 +46,20 @@ const Header = styled.div`
  * IMPROVEMENTS: Can move to using Redux. "Unit" would be used throughout the entire app wherever temperate is displayed
  * so it would make sense to add it to a central store.
  */
-const App = () => {
+const App = ({
+    width,
+    sm,
+    md,
+    lg,
+    xl,
+}) => {
     // state definitions using hooks
     const [ unit, setUnit] = useState('C');
     const [ weatherData, setWeatherData] = useState([]);
     const [ active, setActive] = useState(0);
     const [ start, setStart] = useState(0);
+    // forecast window is the number of weather dates to display on the screen
+    const [ forecastWindow, setForecastWindow] = useState(FORECAST_WINDOW);
 
     /**
      * Works the same as componentDidMount, makes API request to retrieve data from endpoint.
@@ -60,6 +69,21 @@ const App = () => {
             setWeatherData(data);
         })
     });
+
+    /**
+     * For accessibility, updates the forecast window depending on the screen size.
+     */
+    useEffect(() => {
+        if(sm) {
+            setForecastWindow(FORECAST_WINDOW_SM);
+        } else if (md) {
+            setForecastWindow(FORECAST_WINDOW_MD);
+        } else if (lg) {
+            setForecastWindow(FORECAST_WINDOW_LG);
+        } else {
+            setForecastWindow(FORECAST_WINDOW);
+        }
+    }, [width]); // only re-run if width changes
 
     /**
      * Updates the unit of temperature to either celsius or fahrenheit.
@@ -90,8 +114,8 @@ const App = () => {
             setActive(index)
         };
         // if active will be out of the forecast window then set active to the last element in the window
-        if (active >= index + FORECAST_WINDOW) {
-            setActive(active - 1);
+        if (active >= index + forecastWindow) {
+            setActive(index + forecastWindow - 1);
         }
     };
 
@@ -117,6 +141,7 @@ const App = () => {
                             unit={unit}
                             start={start}
                             active={active}
+                            forecastWindow={forecastWindow}
                             onActiveChange={handleActiveChange}
                             onStartChange={handleStartChange}
                         />
@@ -137,4 +162,4 @@ const App = () => {
     )
 };
 
-export default App;
+export default withSize(App);
