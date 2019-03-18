@@ -36,7 +36,9 @@ const Header = styled.div`
     }
 
     .description {
-        max-width: 80%;
+        @media screen and (min-width: 500px) {
+            max-width: 80%;
+        }
         margin: auto;
     }
 `;
@@ -51,7 +53,6 @@ const App = ({
     sm,
     md,
     lg,
-    xl,
 }) => {
     // state definitions using hooks
     const [ unit, setUnit] = useState('C');
@@ -157,6 +158,7 @@ const App = ({
                 >
                     {unit === 'C' ? 'Fahrenheit' : 'Celsius'}
                 </Button>
+                <p>Supports mobile devices and small screen augmentations.</p>
             </div>
         </Layout>
     )
