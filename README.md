@@ -1,7 +1,7 @@
 Atmospheric Conditions For Mechanical Beings -  a weather app for robots 🤖! 
-It can be dangerous travelling in the rain as a robot as electrical shortage are a common occurence. Use this web app to avoid any unexpected reboots and component damage.
+It can be dangerous travelling in the rain as a robot as electrical shortages are a common occurence. Use this web app to avoid any unexpected reboots and component damage.
 
-Please read the comments in ./db/index.js for a detailed breakdown of way the data model was choosen.
+Please read the comments in ./db/index.js for a detailed breakdown of why the data model was choosen.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
