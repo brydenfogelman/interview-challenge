@@ -127,7 +127,7 @@ const App = ({
                 <p className="description">
                     Greetings fellow machine <Emoji symbol="🤖" />! 
                     Please use the following advisory information on atmospheric conditions to avoid 
-                    electrical shortage do not travel outside for long durations during inclement weather.
+                    electrical shortage. Do not travel outside for long durations during inclement weather.
                 </p>
             </Header>
             <div className="content">
