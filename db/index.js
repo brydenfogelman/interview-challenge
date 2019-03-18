@@ -179,7 +179,7 @@ const seed = [
     }
 ];
 
-export default seed.map((obj, index) => {
+module.exports = seed.map((obj, index) => {
     obj.date = moment().add(index,'days').format('YYYY-MM-DD');
     return obj;
 });

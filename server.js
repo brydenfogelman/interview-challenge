@@ -1,6 +1,6 @@
-import express from 'express';
-import cors from 'cors';
-import seed from './db';
+const express = require('express');
+const cors = require('cors');
+const seed = require('./db');
 // import * as moment from 'moment';
 
 const app = express();
